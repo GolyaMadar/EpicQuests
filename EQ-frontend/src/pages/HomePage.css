@@ -1,0 +1,63 @@
+.toast {
+  z-index: 9999999;
+}
+
+.home-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+.home-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.home-content01,
+.home-content02 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  flex-direction: unset;
+  animation: 0.2s ease-in-out 0s 1 normal none running animation-5j8bii;
+}
+
+.home-content02 .loading-container {
+  width: 100%;
+  height: 100%;
+}
+/* PAGINATION */
+.pagination-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@media screen and (max-width: 1000px) {
+  .home-page {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .home-page {
+    padding: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .home-page {
+    padding: 0.8rem;
+  }
+}

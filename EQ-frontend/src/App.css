@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --primary-bg: #242526;
+  --secondary-bg: #797979;
+  --primary-text-color: #555;
+  --secondary-text-color: #c0c0c0;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-height: 0 auto;
+}
+
+.app-navbar-component {
+  width: 100%;
+}
+
+.app-components {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-routes-component {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.routes {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 80vh;
+  height: fit-content;
+  top: 0;
+}
+
+.app-footer-component {
+  z-index: 999999;
+}
+
+@media screen and (max-width: 550px) {
+  .routes {
+    height: max-content;
+  }
+}

@@ -1,0 +1,556 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    40deg,
+    rgb(184, 212, 255) 0%,
+    rgb(85, 153, 255) 80%
+  );
+  width: 100%;
+  max-height: 5.8rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0;
+  flex-direction: row;
+  width: 90%;
+  max-height: 5.8rem;
+  z-index: 99999;
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar-logo-item {
+  margin: 0.3rem;
+  display: flex;
+  width: 15rem;
+  height: auto;
+
+  transition: width 0.5s;
+}
+
+.components {
+  display: grid;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(3, auto);
+  list-style: none;
+  align-items: center;
+}
+
+.component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  margin-right: auto;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.component:hover {
+  border-bottom: 4px solid #fff;
+  transition: all 0.1s ease-in-out;
+  height: 5.6rem;
+  width: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(184, 212, 255),
+    rgb(85, 153, 255)
+  );
+}
+
+.link {
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.nav-icon {
+  display: flex;
+  font-size: 2rem;
+  color: white;
+  margin-right: 0.2rem;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: white;
+  margin-right: auto;
+  margin-left: auto;
+  text-decoration: none;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 1600px) {
+  .navbar {
+    z-index: 99;
+    height: 3.5rem;
+  }
+
+  .navbar-logo-item {
+    margin: 0.1rem;
+    width: 11rem;
+  }
+
+  .components {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 0.6rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .component .text {
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .component {
+    height: 3.5rem;
+  }
+
+  .component:hover {
+    height: 3.4rem;
+  }
+
+  .component .nav-icon {
+    font-size: 1.4rem;
+  }
+
+  .link {
+    padding: 0 0.5rem 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .navbar {
+    z-index: 99;
+    height: 3.2rem;
+  }
+
+  .navbar-logo-item {
+    margin: 0.1rem;
+    width: 10rem;
+  }
+
+  .components {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 1rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .component {
+    height: 3.2rem;
+  }
+
+  .component:hover {
+    height: 3.1rem;
+  }
+
+  .component .text {
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  .component .nav-icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .navbar {
+    z-index: 99;
+    height: 3rem;
+  }
+
+  .navbar-logo-item {
+    width: 8.5rem;
+  }
+
+  .components {
+    grid-gap: 1rem;
+  }
+
+  .component {
+    height: 3rem;
+  }
+
+  .component:hover {
+    height: 2.9rem;
+  }
+
+  .component .text {
+    font-size: 0.75rem;
+  }
+
+  .component .nav-icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .navbar {
+    z-index: 99;
+    height: 2.5rem;
+  }
+
+  .navbar-logo-item {
+    width: 7rem;
+  }
+
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+
+  .components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: linear-gradient(
+      40deg,
+      rgb(184, 212, 255) 0%,
+      rgb(85, 153, 255) 80%
+    );
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    opacity: 0;
+    align-items: stretch;
+    padding: 3rem 0 1rem 0;
+    margin: 0;
+    transition: top 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  .components.active {
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+    transition: top 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  .link {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: transparent;
+    transition: none;
+  }
+
+  .component:hover {
+    border-bottom: none;
+    height: 3rem;
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(184, 212, 255),
+      rgb(85, 153, 255)
+    );
+  }
+
+  .component .text {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: none;
+  }
+
+  .nav-icon {
+    display: flex;
+    font-size: 180%;
+    color: white;
+    margin-right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .navbar {
+    z-index: 99;
+    height: 1.9rem;
+  }
+
+  .navbar-logo-item {
+    width: 6rem;
+  }
+
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    opacity: 0;
+    align-items: stretch;
+    padding: 2.2rem 0 1rem 0;
+    margin: 0;
+    transition: top 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  .components.active {
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+    transition: top 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  .link {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 2.8rem;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: transparent;
+    transition: none;
+  }
+
+  .component:hover {
+    border-bottom: none;
+    height: 2.8rem;
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(184, 212, 255),
+      rgb(85, 153, 255)
+    );
+  }
+
+  .component .text {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: none;
+  }
+
+  .nav-icon {
+    display: flex;
+    font-size: 180%;
+    color: white;
+    margin-right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    z-index: 99;
+    height: 1.3rem;
+  }
+
+  .navbar-logo-item {
+    width: 4rem;
+  }
+
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    opacity: 0;
+    align-items: stretch;
+    padding: 1.6rem 0 0rem 0;
+    margin: 0;
+  }
+
+  .components.active {
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+  }
+
+  .link {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 2.4rem;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: transparent;
+    transition: none;
+  }
+
+  .component:hover {
+    border-bottom: none;
+    height: 2.4rem;
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(184, 212, 255),
+      rgb(85, 153, 255)
+    );
+  }
+
+  .component .text {
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar {
+    z-index: 99;
+    height: 1rem;
+  }
+
+  .navbar-logo-item {
+    width: 2.2rem;
+  }
+
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .components {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    opacity: 0;
+    align-items: stretch;
+    padding: 1.2rem 0 1rem 0;
+    margin: 0;
+  }
+
+  .components.active {
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+  }
+
+  .link {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 2rem;
+    margin-right: auto;
+    cursor: pointer;
+    background-color: transparent;
+    transition: none;
+  }
+
+  .component:hover {
+    border-bottom: none;
+    height: 2rem;
+    width: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(184, 212, 255),
+      rgb(85, 153, 255)
+    );
+  }
+
+  .component .text {
+    display: flex;
+    align-items: center;
+    font-size: 0.4rem;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: none;
+  }
+}

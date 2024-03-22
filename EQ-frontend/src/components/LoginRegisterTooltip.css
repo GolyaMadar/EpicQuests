@@ -1,0 +1,58 @@
+.tooltip-container-login-register {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-login-register {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 300px;
+  height: auto;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.93);
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 300;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.tooltip-login-register::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.9) transparent;
+}
+
+.tooltip-login-register ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.regex-detail-login-register {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.regex-detail-login-register span {
+  margin-right: 10px;
+}
+
+.valid-login-register {
+  color: rgb(7, 121, 1);
+  font-size: 20px;
+}
+
+.invalid-login-register {
+  color: rgb(207, 5, 5);
+  font-size: 20px;
+}

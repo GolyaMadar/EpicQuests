@@ -1,0 +1,350 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
+.user-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  font-weight: 100;
+}
+
+.register {
+  display: flex;
+  width: 550px;
+  padding: 1rem 3.2rem;
+  height: auto;
+  justify-content: center;
+  background-color: rgb(29, 20, 25);
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 1rem;
+  margin: 3rem;
+}
+
+.register {
+  padding-bottom: 2rem;
+}
+
+form {
+  width: 100%;
+}
+
+.register h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.register .email-container,
+.register .password-container,
+.register .name-container,
+.register .confirm-password-container,
+.register .birth-date-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-h3-valid,
+.password-h3-valid,
+.name-h3-valid,
+.confirm-password-h3-valid,
+.birth-date-h3-valid {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8rem;
+}
+
+.bx-error-circle {
+  display: flex;
+  color: rgb(207, 5, 5);
+  margin-top: 0.6rem;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+.bx-check-circle {
+  display: flex;
+  color: rgb(7, 121, 1);
+  margin-top: 0.6rem;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+.email-container h3,
+.password-container h3,
+.name-container h3,
+.confirm-password-container h3,
+.birth-date-container h3 {
+  margin: 0 10px;
+  margin-top: 10px;
+  font-weight: 300;
+}
+
+.register .input-box {
+  position: relative;
+  width: 100%;
+  height: 2.8rem;
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+  border: none;
+  outline: none;
+  border: 0.1rem solid rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem;
+}
+
+.birth-date-container .input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  padding: 10px 20px 10px 10px;
+}
+
+.input-box input::placeholder {
+  color: #000000;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+.input-box .error-input {
+  border: 3px solid #e53935;
+}
+
+.password-toggle-button {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.password-toggle-button i {
+  font-size: 1.5rem;
+  color: #474747;
+}
+
+.password-toggle-button:hover i {
+  color: #000000;
+}
+
+.register .error-message,
+.register .success-message {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 2rem;
+  display: none;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.register .error-message {
+  color: rgb(255, 59, 59);
+}
+
+.register .success-message {
+  color: rgb(41, 164, 0);
+}
+
+.register .visible {
+  display: block;
+}
+
+.register .hidden {
+  display: none;
+}
+
+.register .remember-forgot {
+  display: flex;
+  width: 100%;
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 0rem;
+}
+
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 0.8rem;
+  margin-top: 0.1rem;
+}
+
+input.checkbox {
+  cursor: pointer;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+}
+
+.remember-forgot a {
+  display: flex;
+  color: #fff6f6;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.register .register-button {
+  width: 100%;
+  height: 2.8rem;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 3rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  margin: 15px 0 10px;
+}
+
+.button-error-message-container {
+  margin: 0px 0 10px;
+}
+
+.forgot-password .button-error-message-container {
+  margin: 0px 0 40px;
+}
+
+.forgot-password .error-message {
+  position: absolute;
+  left: 40px;
+  bottom: 1px;
+  font-size: 18px;
+  font-weight: 300px;
+  z-index: 100;
+}
+
+.red {
+  color: rgb(255, 0, 0);
+}
+
+.green {
+  color: rgb(19, 207, 13);
+}
+
+.register-link {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0.2rem 0 0rem;
+}
+
+.register-link a {
+  display: flex;
+  color: #fff6f6;
+  font-size: 0.9rem;
+  margin-left: 2px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-height: 750px) {
+  .register {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .user-register {
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .register {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .user-register {
+    margin: 0px 0px 0px 0px;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .register .remember-forgot {
+    font-size: 0.5rem;
+  }
+
+  input.checkbox {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+
+  .register-link {
+    font-size: 0.5rem;
+  }
+
+  .register-link a {
+    font-size: 0.5rem;
+  }
+
+  .register h1 {
+    font-size: 1rem;
+  }
+
+  .email-h3-valid,
+  .password-h3-valid,
+  .name-h3-valid,
+  .confirm-password-h3-valid,
+  .birth-date-h3-valid {
+    font-size: 0.4rem;
+  }
+
+  .tooltip-container-login-register .bx-error-circle,
+  .tooltip-container-login-register .bx-check-circle {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .register .input-box {
+    height: 2rem;
+  }
+
+  .birth-date-container .input-box input {
+    font-size: 0.8rem;
+  }
+
+  .register .error-message,
+  .register .success-message {
+    font-size: 0.6rem;
+  }
+
+  .input-box i * {
+    font-size: 0.6rem;
+  }
+}
