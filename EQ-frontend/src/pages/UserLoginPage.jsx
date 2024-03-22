@@ -70,32 +70,31 @@ const UserLoginPage = () => {
     }
   };
 
-  const apiUrl = `${import.meta.env.VITE_REACT_USER_API_URL}/token`;
+  const apiUrl = `${
+    import.meta.env.VITE_REACT_USER_API_URL
+  }/api/accounts/login`;
   const handleLoggingiIn = async (userEmail, userPassword) => {
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
-          accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
+          accept: "text/plain",
+          "Content-Type": "application/json",
         },
-        body: new URLSearchParams({
-          grant_type: "",
-          username: userEmail,
+        body: JSON.stringify({
+          email: userEmail,
           password: userPassword,
-          scope: "",
-          client_id: "",
-          client_secret: "",
         }),
       });
 
       const responseData = await response.json();
-      const access_token = responseData.access_token;
+      console.log(responseData);
+      const access_token = responseData.token;
 
       if (response.ok) {
         if (response.status === 200) {
           setSuccessMessage(import.meta.env.VITE_REACT_APP_LOGIN_SUCCESSFUL);
-          login({ access_token });
+          login(access_token);
           window.location.href = "/";
         } else {
           setSuccessMessage("");

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { FaPencilAlt } from "react-icons/fa";
-import { Navigate } from "react-router-dom";
 import UseAuth from "../hooks/UseAuth";
 import "./UserAccountPage.css";
 
@@ -13,17 +11,18 @@ const UserAccountPage = () => {
   const fetchUserData = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_USER_API_URL}/users/me/`,
+        `${import.meta.env.VITE_REACT_USER_API_URL}/api/accounts/profile`,
         {
           method: "GET",
           headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${token.access_token}`,
+            accept: "text/plain",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         setUserData(data);
@@ -62,30 +61,30 @@ const UserAccountPage = () => {
                   <tbody>
                     <tr>
                       <td className="inf">
-                        {import.meta.env.VITE_REACT_APP_NAME}:
+                        {import.meta.env.VITE_REACT_APP_FIRST_NAME}:
                       </td>
-                      <td>{userData.name}</td>
+                      <td className="content">{userData.firstName}</td>
+                    </tr>
+                    <tr>
+                      <td className="inf">
+                        {import.meta.env.VITE_REACT_APP_LAST_NAME}:
+                      </td>
+                      <td className="content">{userData.lastName}</td>
                     </tr>
                     <tr>
                       <td className="inf">
                         {import.meta.env.VITE_REACT_APP_EMAIL}:
                       </td>
-                      <td>{userData.email}</td>
+                      <td className="content">{userData.email}</td>
                     </tr>
                     <tr>
                       <td className="inf">
                         {import.meta.env.VITE_REACT_APP_BIRTH_DATE}:
                       </td>
-                      <td>{userData.birth_date}</td>
+                      <td className="content">{userData.birthDate}</td>
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              <div className="client-container">
-                <p>
-                  {import.meta.env.VITE_REACT_APP_OCS}{" "}
-                  {userData.account_created.split("-")[0]}
-                </p>
               </div>
             </div>
             <div className="user-logout-container">

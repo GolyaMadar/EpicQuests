@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
+import CountryQuizPage from "./pages/CountryQuizPage";
+import FavoritesPage from "./pages/FavoritesPage";
+import HistoryPage from "./pages/HistoryPage";
 import UserLoginPage from "./pages/UserLoginPage";
 import UserAccountPage from "./pages/UserAccountPage";
 import UserRegisterPage from "./pages/UserRegisterPage";
@@ -20,9 +23,20 @@ function App() {
           <div className="routes">
             <Routes>
               <Route path="/" element={<HomePage />} />
+
               <Route element={<RequireAuth />}>
                 <Route path="/account" element={<UserAccountPage />} />
               </Route>
+              <Route element={<RequireAuth />}>
+                <Route path="/favorites" element={<FavoritesPage />} />
+              </Route>
+              <Route element={<RequireAuth />}>
+                <Route path="/history" element={<HistoryPage />} />
+              </Route>
+              <Route
+                path="/country:countryName"
+                element={<CountryQuizPage />}
+              />
 
               <Route path="/user/login" element={<UserLoginPage />} />
               <Route path="/user/register" element={<UserRegisterPage />} />

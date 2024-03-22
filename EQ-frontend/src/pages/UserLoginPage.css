@@ -230,3 +230,29 @@ a:hover {
 .login-link a:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 1550px) {
+  .user-login {
+    margin: 0px 0px 0px 0px;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .login {
+    width: 100vh;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .user-login {
+    margin: 0px 0px 0px 0px;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .login {
+    width: 160vh;
+    height: fit-content;
+  }
+}

@@ -272,7 +272,7 @@ a:hover {
   text-decoration: underline;
 }
 
-@media screen and (max-height: 750px) {
+@media screen and (max-height: 900px) {
   .register {
     width: fit-content;
     height: fit-content;

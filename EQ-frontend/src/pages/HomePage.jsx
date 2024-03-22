@@ -1,33 +1,22 @@
 import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import UseAuth from "../hooks/UseAuth";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import EuropeMap from "../components/EuropeMap";
 import "./HomePage.css";
 
 const HomePage = () => {
   const { isLoggedIn, token, logout } = UseAuth();
-  const [favoriteApartments, setFavoriteApartments] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  console.log(isLoggedIn);
 
   return (
     <>
-      <div className="toast">
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
+      <div className="home-page">
+        <div className="europe-map">
+          <EuropeMap isLoggedIn={isLoggedIn} />
+        </div>
       </div>
-
-      <div className="home-page"></div>
     </>
   );
 };

@@ -162,7 +162,9 @@ const UserRegisterPage = () => {
   const current = new Date();
   const date = current.toISOString().slice(0, 10);
 
-  const apiUrl = `${import.meta.env.VITE_REACT_USER_API_URL}/users/add`;
+  const apiUrl = `${
+    import.meta.env.VITE_REACT_USER_API_URL
+  }/api/accounts/register`;
   const handleRegistration = async (
     firstName,
     lastName,
@@ -174,27 +176,27 @@ const UserRegisterPage = () => {
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
-          accept: "application/json",
+          accept: "text/plain",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstName: firstName,
           lastName: lastName,
           email: userEmail,
-          birth_date: userBirthDate,
           password: userPassword,
+          birthDate: userBirthDate,
         }),
       });
 
       const responseData = await response.json();
-      const access_token = responseData.access_token;
-      console.log(responseData, birthDate, date);
+      const access_token = responseData.token;
+      console.log(responseData, birthDate, date, access_token);
 
       if (response.ok) {
         setSuccessMessage(
           import.meta.env.VITE_REACT_APP_REGISTRATION_SUCCESSFUL
         );
-        login({ access_token });
+        login(access_token);
         window.location.href = "/";
       } else if (response.status === 400) {
         setSuccessMessage("");
@@ -204,7 +206,8 @@ const UserRegisterPage = () => {
         setError("Error: " + response.status);
       }
     } catch (error) {
-      setError(error);
+      console.log(error);
+      setError(error.toISOString());
     }
   };
 
