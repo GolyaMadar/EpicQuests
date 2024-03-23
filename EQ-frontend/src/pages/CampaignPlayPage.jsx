@@ -64,7 +64,7 @@ const CampaignPlayPage = () => {
 
   return (
     <div className="campaign-play-page">
-      <div className="europe-map">
+      <div className={`europe-map ${startQuiz ? "no-pointer-events" : ""}`}>
         <EuropeMap
           setSelectedToDelete={setSelectedCountryToDelete}
           selectedCountry={selectedCountry}
@@ -93,7 +93,6 @@ const CampaignPlayPage = () => {
           )}
           {startQuiz && (
             <div className="question">
-              {/* Kérdés */}
               <h3>{questions[currentQuestion].question}</h3>
               {/* Kérdéshez kapcsolódó kép */}
               {questions[currentQuestion].imageUri ? (
@@ -103,7 +102,10 @@ const CampaignPlayPage = () => {
                   className="question-image"
                 />
               ) : (
-                <div className="no-image-placeholder">No Image</div>
+                <div className="no-image-placeholder">
+                  No Image
+                  <img src="../../public/images/dummy_card.png" alt="" />
+                </div>
               )}
               {/* Válaszok megjelenítése */}
               <div className="answers">
