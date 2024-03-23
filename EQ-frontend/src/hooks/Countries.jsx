@@ -8,9 +8,8 @@ export const cities = [
 ];
 
 export const neighbours = {
-  RO: ["HU", "UK", "MD", "BG"],
+  RO: ["HU", "UA", "MD", "BG", "RS"],
   HU: ["RO", "SK", "UA", "AT", "SI", "HR", "RS"],
-  UK: ["RO", "HU", "FR", "BE", "NL", "DE"],
   MD: ["RO", "UA"],
   BG: ["RO", "GR", "TR", "MK", "RS"],
   SK: ["HU", "AT", "CZ", "PL", "UA"],
@@ -18,38 +17,44 @@ export const neighbours = {
   AT: ["HU", "SK", "CZ", "DE", "CH", "IT", "SI"],
   SI: ["AT", "IT", "HR", "HU"],
   HR: ["SI", "HU", "RS", "BA"],
-  RS: ["HU", "HR", "BA", "BG", "MK"],
+  RS: ["HU", "HR", "BA", "BG", "ME", "RO", "XK"],
   FR: ["UK", "BE", "DE", "CH", "IT", "ES"],
   BE: ["UK", "FR", "NL", "DE", "LU"],
   NL: ["UK", "BE", "DE"],
-  DE: ["UK", "FR", "NL", "BE", "CH", "AT", "CZ", "PL", "DK"],
-  RU: ["NO", "FI", "EE", "LV", "LT", "BY", "UA", "GE", "KZ", "MN", "CN"],
+  DE: ["UK", "FR", "NL", "BE", "CH", "AT", "CZ", "PL", "DK", "LU"],
+  RU: ["NO", "FI", "EE", "LV", "LT", "BY", "UA", "GE", "KZ", "MN", "CN", "PL"],
   GR: ["BG", "TR", "AL", "MK"],
   TR: ["BG", "GR", "IR", "IQ", "SY", "GE", "AM", "AZ"],
-  MK: ["BG", "AL", "RS", "GR"],
-  PL: ["DE", "CZ", "SK", "UA", "BY", "LT"],
+  MK: ["BG", "AL", "RS", "GR", "XK"],
+  PL: ["DE", "CZ", "SK", "UA", "BY", "LT", "RU"],
   CZ: ["DE", "AT", "SK", "PL"],
   IT: ["FR", "CH", "AT", "SI"],
-  ES: ["FR", "PT"],
+  ES: ["FR", "PT", "AD"],
   CH: ["DE", "AT", "IT", "FR", "LI"],
-  LI: ["CH"],
+  LI: ["CH", "AT"],
   LU: ["BE", "DE", "FR"],
   SM: ["IT"],
+  XK: ["RS", "ME", "AL", "MK"],
+  ME: ["XK", "BA", "AL", "RS"],
+  BA: ["ME", "RS", "HR"],
+  AL: ["ME", "MK", "GR", "XK"],
+  GB: ["IE"],
+  IE: ["GB"],
+  NO: ["SE"],
+  SE: ["NO", "FI"],
+  FI: ["SE"],
+  DK: ["DE"],
+  AD: ["ES"],
+  BY: ["RU", "UA", "LT", "LV", "PL"],
+  LV: ["EE", "LT", "BY"],
+  EE: ["LV", "RU"],
+  LT: ["LV", "BY", "PL", "RU"],
+  IS: [],
+  FO: [],
 };
 
-export const countries = {
-  IN: 88,
-  CN: 33,
-  RU: 79,
-  MY: 2,
-  GB: 100,
-  FK: 10,
-  AR: 50,
-  VE: 90,
-};
-
-export const selectedColor = "#4CAF50"; // Zöld
-export const neighbourColor = "#FFC107"; // Sárga
+export const selectedColor = ["#4CBF50", "#4CAF50"]; // Zöld
+export const neighbourColor = ["#FBD700", "#FFD700"]; // Sárga
 
 export const campaignTypes = [
   {
@@ -60,5 +65,8 @@ export const campaignTypes = [
     label: "General education",
     value: 1,
   },
-  { label: "Social sensitivity", value: 2 },
+  {
+    label: "Social sensitivity",
+    value: 2,
+  },
 ];

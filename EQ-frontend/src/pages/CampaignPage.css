@@ -1,3 +1,7 @@
+.toast {
+  z-index: 9999999;
+}
+
 .campaign-page {
   display: flex;
   align-items: start;

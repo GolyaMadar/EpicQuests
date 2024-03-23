@@ -76,19 +76,29 @@ const Canvas = () => {
     ctxRef.current.stroke();
   };
 
-  const saveImage = () => {
+  const saveImage = async () => {
     const canvas = canvasRef.current;
-    const image = canvas.toDataURL("image/png"); // Kép adat URL létrehozása
+    const image = canvas.toDataURL("image/jpg"); // Image data URL
 
-    // Létrehozunk egy linket, beállítjuk a href-t a képadatra és a letöltendő fájl nevét
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "drawing.png";
+    console.log(image);
 
-    // Kattintás után az elemet eltávolítjuk, hogy ne maradjon a DOM-ban
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      const response = await fetch("http://fokakefir.go.ro/input/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ image }),
+      });
+
+      if (response.ok) {
+        console.log("Image saved successfully");
+      } else {
+        throw new Error("Failed to save image");
+      }
+    } catch (error) {
+      console.error("Error saving image:", error);
+    }
   };
 
   return (
