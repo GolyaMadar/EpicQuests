@@ -57,10 +57,26 @@ button:hover {
   padding: 1rem;
 }
 
-.campaing-list {
-  width: 100%;
+.list-content {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  flex-direction: unset;
+}
+
+.campaing-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .campaign-card {

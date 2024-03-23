@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UseAuth from "../hooks/UseAuth";
+import LoadingSpinner from "../components/LoadingSpinner";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { IoIosAddCircleOutline } from "react-icons/io";
@@ -8,33 +9,6 @@ import "./CampaignPage.css";
 import { campaignTypes } from "../hooks/Countries";
 
 const animatedComponents = makeAnimated();
-
-const dataCampaign = [
-  {
-    type: "Children",
-    image: "./images/dummy_card.png",
-    id: 1,
-    creationDate: "2024-02-02",
-    score: 12,
-    percent: 23,
-  },
-  {
-    type: "General education",
-    image: "./images/dummy_card.png",
-    id: 2,
-    creationDate: "2024-03-15",
-    score: 8,
-    percent: 45,
-  },
-  {
-    type: "Social sensitivity",
-    image: "./images/dummy_card.png",
-    id: 3,
-    creationDate: "2024-01-10",
-    score: 15,
-    percent: 60,
-  },
-];
 
 const CampaignTypesSelect = ({ data, setData }) => {
   const handleChange = (selectedOptions) => {
@@ -65,13 +39,22 @@ const CampaignCardItem = ({
   score,
   percent,
 }) => {
-  const handleNavigation = (event) => {
+  const handleNavigation = () => {
     window.location.href = `/campaign/:${id}/play`;
   };
 
+  const date = new Date(creationDate);
+  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+  creationDate = formattedDate;
+
+  const categoryLabel =
+    campaignTypes.find((a) => a.value === type)?.label || "Unknown";
+
   return (
     <div className="campaign-card" onClick={handleNavigation}>
-      <h2 className="campaign-card-title">{type}</h2>
+      <h2 className="campaign-card-title">{categoryLabel}</h2>
       <div className="campaign-card-image">
         <img src={image} alt={type} />
       </div>
@@ -99,23 +82,53 @@ const CampaignPage = () => {
     campaignTypes[0]
   );
   const [yourCampaigns, setYourCampaigns] = useState([]);
+  const { token } = UseAuth();
+  const [loading, setLoading] = useState(true);
 
-  const { isLoggedIn, token } = UseAuth();
-
-  const handleAddCampaign = () => {
-    // Új kampány létrehozása a kiválasztott típussal
-    const newCampaign = {
-      type: selectedCampaignType.label,
-      id: Math.floor(Math.random() * 1000), // Véletlenszerű azonosító generálása
-      image: "./images/dummy_card.png",
-      creationDate: new Date().toISOString().split("T")[0], // Aktuális dátum beállítása
-      score: 0, // Alapértelmezett pontszám
-      percent: 0, // Alapértelmezett százalék
-    };
-
-    // Hozzáadni az új kampányt a listához
-    setYourCampaigns([...yourCampaigns, newCampaign]);
+  const handleAddCampaign = async (selectedType) => {
+    try {
+      const apiUrl = `${
+        import.meta.env.VITE_REACT_USER_API_URL
+      }/api/campaigns/${selectedType.value}`;
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setYourCampaigns([...yourCampaigns, data]);
+    } catch (error) {
+      console.error("Error adding campaign:", error);
+      setLoading(false);
+    }
   };
+
+  const fetchDataCampaigns = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_REACT_USER_API_URL}/api/campaigns`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      setYourCampaigns(data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching campaigns:", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataCampaigns();
+  }, [token]);
 
   return (
     <div className="campaign-page">
@@ -127,7 +140,10 @@ const CampaignPage = () => {
           data={campaignTypes}
           setData={setSelectedCampaignType}
         />
-        <button className="new-campaign" onClick={handleAddCampaign}>
+        <button
+          className="new-campaign"
+          onClick={() => handleAddCampaign(selectedCampaignType)}
+        >
           <IoIosAddCircleOutline />
           <p className="add-campaign">Add new campaign</p>
         </button>
@@ -136,18 +152,26 @@ const CampaignPage = () => {
       <div className="your-campaigns">
         <h2>Your campaigns</h2>
       </div>
-      <div className="campaing-list">
-        {yourCampaigns.map((campaign, index) => (
-          <CampaignCardItem
-            key={index}
-            type={campaign.type}
-            image={campaign.image}
-            id={campaign.id}
-            creationDate={campaign.creationDate}
-            score={campaign.score}
-            percent={campaign.percent}
-          />
-        ))}
+      <div className="list-content">
+        <div className="campaing-list">
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            <>
+              {yourCampaigns.map((campaign, index) => (
+                <CampaignCardItem
+                  key={index}
+                  type={campaign.category}
+                  image={"./images/dummy_card.png"}
+                  id={campaign.id}
+                  creationDate={campaign.creationTime}
+                  score={campaign.score}
+                  percent={campaign.percent}
+                />
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

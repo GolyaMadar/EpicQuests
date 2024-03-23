@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import EuropeMap from "../components/EuropeMap";
-import "./CampaignPage.css";
+import "./CampaignPlayPage.css";
 
-const CampaignPage = () => {
+const CampaignPlayPage = () => {
   return (
     <>
-      <div className="home-page">
+      <div className="campaign-play-page">
         <div className="europe-map">
           <EuropeMap />
         </div>
+        <div className="quiz-area">asd</div>
       </div>
     </>
   );
 };
 
-export default CampaignPage;
+export default CampaignPlayPage;
