@@ -9,38 +9,31 @@ import {
   neighbours,
 } from "../hooks/Countries";
 
-const initialSelectedCountries = {};
-const initialSelectedCountries2 = {};
-
-function EuropeMap({ selectedCountryToDelete, setSelectedCountryToDelete }) {
-  const [selectedCountries, setSelectedCountries] = useState(
-    initialSelectedCountries
-  );
-  const [selectedCountries2, setSelectedCountries2] = useState(
-    initialSelectedCountries2
-  );
-
+function EuropeMap({
+  setSelectedToDelete,
+  selectedCountry,
+  setSelectedCountry,
+  selectedCountries2,
+  setSelectedCountries2,
+}) {
   const handleRegionClick = (event, code) => {
-    setSelectedCountries((prevSelectedCountries) => {
-      const updatedSelectedCountries = { ...prevSelectedCountries };
-
-      // Ha az ország már ki van választva, távolítsuk el
-      if (updatedSelectedCountries[code] === 1) {
-        setSelectedCountryToDelete(code);
-      } else {
-        updatedSelectedCountries[code] = 1;
-        // Szomszédos országok hozzáadása a selectedCountries2-höz
-        for (const neighbour of neighbours[code]) {
-          if (!selectedCountries[neighbour]) {
-            setSelectedCountries2((prevSelectedCountries2) => ({
-              ...prevSelectedCountries2,
-              [neighbour]: 1,
-            }));
-          }
+    // Ha az ország már ki van választva, távolítsuk el
+    if (selectedCountry === code) {
+      setSelectedCountry(null);
+      setSelectedToDelete(null);
+    } else {
+      setSelectedCountry(code);
+      setSelectedToDelete(code);
+      // Szomszédos országok hozzáadása a selectedCountries2-höz
+      for (const neighbour of neighbours[code]) {
+        if (!selectedCountry || selectedCountry !== neighbour) {
+          setSelectedCountries2((prevSelectedCountries2) => ({
+            ...prevSelectedCountries2,
+            [neighbour]: 1,
+          }));
         }
       }
-      return updatedSelectedCountries;
-    });
+    }
   };
 
   return (
@@ -61,7 +54,7 @@ function EuropeMap({ selectedCountryToDelete, setSelectedCountryToDelete }) {
             regions: [
               {
                 scale: selectedColor,
-                values: selectedCountries,
+                values: selectedCountry ? { [selectedCountry]: 1 } : {},
                 min: 0,
                 max: 1,
               },
