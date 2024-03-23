@@ -1,0 +1,16 @@
+.vector {
+  border: 1px solid;
+}
+
+.question button {
+  margin-right: 10px;
+  background-color: #0177e2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.question button:hover {
+  background-color: #01579b;
+}

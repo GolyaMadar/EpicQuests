@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
+.user-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  font-weight: 100;
+}
+
+.login {
+  display: flex;
+  width: 550px;
+  padding: 1.3rem 3.2rem;
+  min-height: 25rem;
+  justify-content: center;
+  background: linear-gradient(40deg, rgb(8, 45, 100) 0%, rgb(85, 153, 255) 80%);
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 1rem;
+  margin: 3rem;
+}
+
+.login h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.login .email-container,
+.login .password-container,
+.register .email-container,
+.register .password-container,
+.register .name-container,
+.register .confirm-password-container,
+.register .birth-date-container,
+.forgot-password .email-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-h3-valid,
+.password-h3-valid,
+.name-h3-valid,
+.confirm-password-h3-valid,
+.birth-date-h3-valid {
+  display: flex;
+  flex-direction: row;
+}
+
+.bx-error-circle {
+  display: flex;
+  color: rgb(207, 5, 5);
+  margin-top: 0.6rem;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+.bx-check-circle {
+  display: flex;
+  color: rgb(7, 121, 1);
+  margin-top: 0.6rem;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+.email-container h3,
+.password-container h3,
+.name-container h3,
+.confirm-password-container h3,
+.birth-date-container h3,
+.forgot-password h3 {
+  margin: 0 10px;
+  margin-top: 10px;
+  font-weight: 300;
+}
+
+.login .input-box {
+  position: relative;
+  width: 100%;
+  height: 2.8rem;
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+  border: none;
+  outline: none;
+  border: 0.1rem solid rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  font-size: 1rem;
+  padding: 10px 20px 10px 10px;
+}
+
+.input-box input::placeholder {
+  color: #000000;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #000000;
+}
+
+.input-box .error-input {
+  border: 3px solid #e53935;
+}
+
+.password-toggle-button {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.password-toggle-button i {
+  font-size: 1.5rem;
+  color: #474747;
+}
+
+.password-toggle-button:hover i {
+  color: #000000;
+}
+
+.login .error-message,
+.login .success-message {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 2rem;
+  display: none;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.login .error-message {
+  color: rgb(255, 59, 59);
+}
+
+.login .success-message {
+  color: rgb(41, 164, 0);
+}
+
+.login .visible {
+  display: block;
+}
+
+.login .hidden {
+  display: none;
+}
+
+.login .remember-forgot {
+  display: flex;
+  width: 100%;
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 0rem;
+}
+
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+input.checkbox {
+  cursor: pointer;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+  margin-right: 0.2rem;
+}
+
+.remember-forgot a {
+  display: flex;
+  color: #fff6f6;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.login .login-button {
+  width: 100%;
+  height: 2.8rem;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 3rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #000000;
+  font-weight: 600;
+  margin: 15px 0 10px;
+}
+
+.register-link {
+  margin: 0;
+}
+
+.button-error-message-container {
+  margin: 0px 0 10px;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 1550px) {
+  .user-login {
+    margin: 0px 0px 0px 0px;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .login {
+    width: 100vh;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .user-login {
+    margin: 0px 0px 0px 0px;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .login {
+    width: 160vh;
+    height: fit-content;
+  }
+}
