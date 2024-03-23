@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-import CountryQuizPage from "./pages/CountryQuizPage";
-import FavoritesPage from "./pages/FavoritesPage";
+import DrawPage from "./pages/DrawPage";
+import CampaignPage from "./pages/CampaignPage";
+import CampaignPlayPage from "./pages/CampaignPlayPage";
 import HistoryPage from "./pages/HistoryPage";
 import UserLoginPage from "./pages/UserLoginPage";
 import UserAccountPage from "./pages/UserAccountPage";
 import UserRegisterPage from "./pages/UserRegisterPage";
 import UserForgotPassword from "./pages/UserForgotPassword";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
@@ -28,15 +30,16 @@ function App() {
                 <Route path="/account" element={<UserAccountPage />} />
               </Route>
               <Route element={<RequireAuth />}>
-                <Route path="/favorites" element={<FavoritesPage />} />
+                <Route path="/campaign" element={<CampaignPage />} />
               </Route>
               <Route element={<RequireAuth />}>
                 <Route path="/history" element={<HistoryPage />} />
               </Route>
               <Route
-                path="/country:countryName"
-                element={<CountryQuizPage />}
+                path="/campaign/:campaign_id/play"
+                element={<CampaignPlayPage />}
               />
+              <Route path="/draw" element={<DrawPage />} />
 
               <Route path="/user/login" element={<UserLoginPage />} />
               <Route path="/user/register" element={<UserRegisterPage />} />
@@ -46,6 +49,9 @@ function App() {
               />
             </Routes>
           </div>
+        </div>
+        <div className="app-footer-component">
+          <Footer />
         </div>
       </div>
     </Router>

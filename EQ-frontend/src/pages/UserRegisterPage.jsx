@@ -159,9 +159,6 @@ const UserRegisterPage = () => {
     }
   };
 
-  const current = new Date();
-  const date = current.toISOString().slice(0, 10);
-
   const apiUrl = `${
     import.meta.env.VITE_REACT_USER_API_URL
   }/api/accounts/register`;
@@ -190,7 +187,6 @@ const UserRegisterPage = () => {
 
       const responseData = await response.json();
       const access_token = responseData.token;
-      console.log(responseData, birthDate, date, access_token);
 
       if (response.ok) {
         setSuccessMessage(
@@ -200,7 +196,7 @@ const UserRegisterPage = () => {
         window.location.href = "/";
       } else if (response.status === 400) {
         setSuccessMessage("");
-        setError(responseData.detail);
+        setError(responseData.errors[0]);
       } else {
         setSuccessMessage("");
         setError("Error: " + response.status);

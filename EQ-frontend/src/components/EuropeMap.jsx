@@ -2,13 +2,12 @@ import { VectorMap } from "@react-jvectormap/core";
 import { europeMill } from "@react-jvectormap/europe";
 import React from "react";
 
-function EuropeMap(isLoggedIn) {
+import { cities } from "../hooks/Countries";
+
+function EuropeMap() {
   const handleRegionClick = (event, code) => {
-    if (isLoggedIn) {
-      console.log(code);
-      window.location.href = `/country:${code}`;
-    }
-    // console.log(isLoggedIn);
+    console.log(code);
+    window.location.href = `/country/:${code}`;
   };
 
   return (
@@ -19,7 +18,8 @@ function EuropeMap(isLoggedIn) {
       >
         <VectorMap
           map={europeMill}
-          backgroundColor="blue"
+          backgroundColor="#0177e2"
+          markers={cities}
           onRegionClick={handleRegionClick}
         />
       </div>

@@ -16,7 +16,7 @@
   padding: 1rem 3.2rem;
   height: auto;
   justify-content: center;
-  background-color: rgb(29, 20, 25);
+  background: linear-gradient(40deg, rgb(8, 45, 100) 0%, rgb(85, 153, 255) 80%);
   backdrop-filter: blur(1rem);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.9);
   color: white;
