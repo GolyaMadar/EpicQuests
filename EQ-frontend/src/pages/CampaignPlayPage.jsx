@@ -10,7 +10,7 @@ const questions = [
     imageUri: "",
     explanation: "Budapest Magyarország fővárosa.",
     answers: [
-      { id: 1, text: "Budapest" },
+      { id: 1, text: "Budzxczxcasdasdzxczxczxczxczxczxczxczxczxczxcapest" },
       { id: 2, text: "Berlin" },
       { id: 3, text: "Párizs" },
       { id: 4, text: "London" },
@@ -30,11 +30,37 @@ const questions = [
     ],
     correctAnswer: 3,
   },
+  {
+    id: 3,
+    question: "Melyik évben tört ki az első világháború?",
+    imageUri: "",
+    explanation: "Az első világháború 1914-ben kezdődött.",
+    answers: [
+      { id: 1, text: "1918" },
+      { id: 2, text: "1939" },
+      { id: 3, text: "1914" },
+      { id: 4, text: "1945" },
+    ],
+    correctAnswer: 3,
+  },
+  {
+    id: 4,
+    question: "Melyik évben tört ki az első világháború?",
+    imageUri: "",
+    explanation: "Az első világháború 1914-ben kezdődött.",
+    answers: [
+      { id: 1, text: "1918" },
+      { id: 2, text: "1939" },
+      { id: 3, text: "1914" },
+      { id: 4, text: "1945" },
+    ],
+    correctAnswer: 3,
+  },
 ];
 
 const CampaignPlayPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedCountries2, setSelectedCountries2] = useState({});
   const [selectedCountryToDelete, setSelectedCountryToDelete] = useState(null);
@@ -48,18 +74,45 @@ const CampaignPlayPage = () => {
   };
 
   const handleAnswerClick = (answerId) => {
-    setSelectedAnswer(answerId);
+    // Ellenőrizzük, hogy a válasz már kiválasztva van-e
+    const isSelected = selectedAnswers.includes(answerId);
+    if (isSelected) {
+      // Ha a válasz már kiválasztva van, akkor eltávolítjuk azt
+      setSelectedAnswers(selectedAnswers.filter((id) => id !== answerId));
+    } else {
+      // Ha a válasz még nincs kiválasztva, akkor hozzáadjuk azt
+      setSelectedAnswers([...selectedAnswers, answerId]);
+    }
   };
 
   const handleNextQuestion = () => {
-    // Ellenőrizzük, hogy a válasz helyes-e, és növeljük a pontszámot, ha igen
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
+    // Ellenőrizzük, hogy még vannak-e további kérdések
+    if (currentQuestion < questions.length - 1) {
+      // Ellenőrizzük, hogy a válaszok helyesek-e
+      console.log(selectedAnswers);
+      const currentQuestionData = questions[currentQuestion];
+      const isCorrect = selectedAnswers.every((id) =>
+        currentQuestionData.answers.find((answer) => answer.id === id)
+      );
+
+      // Ha a válaszok helyesek, növeljük a pontszámot
+      if (isCorrect) {
+        // A pontszám növeléséhez itt írd meg a szükséges kódot
+      }
+
+      // Frissítjük a következő kérdés indexét
+      setCurrentQuestion(currentQuestion + 1);
+      // Reseteljük a kiválasztott válaszokat
+      setSelectedAnswers([]);
+    } else {
+      // Ha elfogytak a kérdések, kezeld ezt a helyzetet itt, például állítsd le a kvízt, jeleníts meg egy üzenetet stb.
+      // Itt megjeleníthetsz egy üzenetet vagy irányíthatod át a felhasználót egy másik oldalra
+      console.log("Elfogytak a kérdések!");
+      // Például:
+      alert("Gratulálok, befejezted a kvízt!");
+      // Vagy:
+      // history.push("/quiz-finished"); // Irányítás egy másik oldalra
     }
-    // Frissítjük a következő kérdés indexét
-    setCurrentQuestion(currentQuestion + 1);
-    // Reseteljük a kiválasztott választ
-    setSelectedAnswer("");
   };
 
   return (
@@ -96,34 +149,105 @@ const CampaignPlayPage = () => {
               <h3>{questions[currentQuestion].question}</h3>
               {/* Kérdéshez kapcsolódó kép */}
               {questions[currentQuestion].imageUri ? (
-                <img
-                  src={questions[currentQuestion].imageUri}
-                  alt="Question"
-                  className="question-image"
-                />
+                <div className="image-content">
+                  <img
+                    src={questions[currentQuestion].imageUri}
+                    alt="Question"
+                    className="question-image"
+                  />
+                </div>
               ) : (
                 <div className="no-image-placeholder">
                   No Image
-                  <img src="../../public/images/dummy_card.png" alt="" />
+                  <div className="image-content">
+                    <img src="/images/dummy_card.png" alt="" />
+                  </div>
                 </div>
               )}
               {/* Válaszok megjelenítése */}
               <div className="answers">
-                {questions[currentQuestion].answers.map((answer) => (
-                  <Fragment key={answer.id}>
-                    <input
-                      type="radio"
-                      id={`answer-${answer.id}`}
-                      name="answer"
-                      value={answer.id}
-                      checked={selectedAnswer === answer.id}
-                      onChange={() => handleAnswerClick(answer.id)}
-                    />
-                    <label htmlFor={`answer-${answer.id}`}>{answer.text}</label>
-                  </Fragment>
-                ))}
+                <div className="a1">
+                  <div className="answer">
+                    {questions[currentQuestion].answers
+                      .slice(0, 1)
+                      .map((answer) => (
+                        <div
+                          key={answer.id}
+                          className={
+                            selectedAnswers.includes(answer.id)
+                              ? "answer selected"
+                              : "answer"
+                          }
+                          onClick={() => handleAnswerClick(answer.id)}
+                        >
+                          <label htmlFor={`answer-${answer.id}`}>
+                            {answer.text}
+                          </label>
+                        </div>
+                      ))}
+                  </div>
+                  <div className="answer">
+                    {questions[currentQuestion].answers
+                      .slice(1, 2)
+                      .map((answer) => (
+                        <div
+                          key={answer.id}
+                          className={
+                            selectedAnswers.includes(answer.id)
+                              ? "answer selected"
+                              : "answer"
+                          }
+                          onClick={() => handleAnswerClick(answer.id)}
+                        >
+                          <label htmlFor={`answer-${answer.id}`}>
+                            {answer.text}
+                          </label>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                <div className="a2">
+                  <div className="answer">
+                    {questions[currentQuestion].answers
+                      .slice(2, 3)
+                      .map((answer) => (
+                        <div
+                          key={answer.id}
+                          className={
+                            selectedAnswers.includes(answer.id)
+                              ? "answer selected"
+                              : "answer"
+                          }
+                          onClick={() => handleAnswerClick(answer.id)}
+                        >
+                          <label htmlFor={`answer-${answer.id}`}>
+                            {answer.text}
+                          </label>
+                        </div>
+                      ))}
+                  </div>
+                  <div className="answer">
+                    {questions[currentQuestion].answers
+                      .slice(3, 4)
+                      .map((answer) => (
+                        <div
+                          key={answer.id}
+                          className={
+                            selectedAnswers.includes(answer.id)
+                              ? "answer selected"
+                              : "answer"
+                          }
+                          onClick={() => handleAnswerClick(answer.id)}
+                        >
+                          <label htmlFor={`answer-${answer.id}`}>
+                            {answer.text}
+                          </label>
+                        </div>
+                      ))}
+                  </div>
+                </div>
               </div>
-              {/* Következő gomb */}
+
               <button onClick={handleNextQuestion}>Next</button>
             </div>
           )}

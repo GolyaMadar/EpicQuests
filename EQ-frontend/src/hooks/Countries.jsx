@@ -38,12 +38,12 @@ export const neighbours = {
   ME: ["XK", "BA", "AL", "RS"],
   BA: ["ME", "RS", "HR"],
   AL: ["ME", "MK", "GR", "XK"],
-  GB: ["IE"],
+  GB: ["IE", "FR", "NL", "BE"],
   IE: ["GB"],
   NO: ["SE"],
-  SE: ["NO", "FI"],
+  SE: ["NO", "FI", "DK"],
   FI: ["SE"],
-  DK: ["DE"],
+  DK: ["DE", "SE", "NO"],
   AD: ["ES"],
   BY: ["RU", "UA", "LT", "LV", "PL"],
   LV: ["EE", "LT", "BY"],
@@ -52,7 +52,6 @@ export const neighbours = {
   IS: [],
   FO: [],
 };
-
 export const selectedColor = ["#4CBF50", "#4CAF50"]; // Zöld
 export const neighbourColor = ["#FBD700", "#FFD700"]; // Sárga
 

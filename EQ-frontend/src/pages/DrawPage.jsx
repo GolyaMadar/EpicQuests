@@ -81,23 +81,21 @@ const Canvas = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    try {
-      const response = await fetch("http://fokakefir.go.ro:2000/upload/", {
+    const response = await fetch(
+      "http://fokakefir.go.ro:2000/upload_and_generate/",
+      {
         method: "POST",
         body: formData, // FormData objektum küldése a törzsben
-      });
-
-      const data = await response.json();
-      console.log(response);
-
-      if (response.status == 200) {
-        console.log("ASD");
-        console.log("Server response:", data);
-      } else {
-        console.error("Error uploading image:", response.statusText);
       }
-    } catch (error) {
-      console.error("Error uploading image:", error);
+    );
+
+    const data = await response.json();
+    console.log(response);
+
+    if (response.status == 200) {
+      console.log("Server response:", data.filename);
+    } else {
+      console.error("Error uploading image:", response.statusText);
     }
   };
 
@@ -131,8 +129,8 @@ const Canvas = () => {
         onMouseUp={endDrawing}
         onMouseMove={draw}
         ref={canvasRef}
-        width={`1080px`}
-        height={`620px`}
+        width={`600px`}
+        height={`600px`}
       />
       <div className="save-canvas">
         <button onClick={saveImage}>Mentés képként</button>

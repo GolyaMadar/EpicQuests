@@ -115,6 +115,8 @@ const CampaignPage = () => {
       });
       if (response.ok) {
         const data = await response.json();
+        data.score = 0;
+        data.totalQuiz = 0;
         setYourCampaigns([...yourCampaigns, data]);
         notify(
           <>

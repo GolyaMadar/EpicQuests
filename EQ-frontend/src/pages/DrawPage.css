@@ -6,6 +6,8 @@
 .paint-content {
   padding: 1rem;
   width: 100%;
+  margin-top: 10px;
+  height: 690px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -19,14 +21,14 @@ h1 {
 }
 
 .draw-area {
-  width: 1080px;
-  height: 680px;
+  width: 600px;
+  height: 670px;
   border: 2px solid #808080;
   background-color: white;
 }
 
 .Menu {
-  width: 650px;
+  width: 600px;
   height: 50px;
   display: flex;
   justify-content: space-evenly;
@@ -34,7 +36,13 @@ h1 {
   align-items: center;
   background-color: #a3a3a32d;
   margin: auto;
+  margin-top: 5px;
+}
+
+canvas {
   margin-top: 10px;
+  background-color: white;
+  background: #000000;
 }
 
 .save-canvas {
