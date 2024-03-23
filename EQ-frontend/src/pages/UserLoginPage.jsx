@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { emailRegex, passwordRegex } from "../hooks/RegexPatterns";
 import LoginRegisterTooltip from "../components/LoginRegisterTooltip";
 import UseAuth from "../hooks/UseAuth";
 import "./UserLoginPage.css";
+import GoogleAuth from "../components/GoogleLogin";
 
 const UserLoginPage = () => {
   const { login, isLoggedIn } = UseAuth();
@@ -300,6 +301,8 @@ const UserLoginPage = () => {
               </p>
             )}
           </div>
+
+          <GoogleAuth/>
 
           <div className="register-link">
             {import.meta.env.VITE_REACT_APP_NO_ACCOUNT}
