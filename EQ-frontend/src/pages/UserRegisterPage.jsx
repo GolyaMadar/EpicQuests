@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { emailRegex, passwordRegex } from "../hooks/RegexPatterns";
 import LoginRegisterTooltip from "../components/LoginRegisterTooltip";
 import UseAuth from "../hooks/UseAuth";
