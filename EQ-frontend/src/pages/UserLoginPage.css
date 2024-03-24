@@ -149,6 +149,11 @@
   font-size: 1rem;
 }
 
+.google-implementation {
+  display: flex;
+  justify-content: center;
+}
+
 .login .error-message {
   color: rgb(255, 59, 59);
 }

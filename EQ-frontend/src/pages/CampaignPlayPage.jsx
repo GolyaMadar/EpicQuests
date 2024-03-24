@@ -62,6 +62,7 @@ const CampaignPlayPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountries, setSelectedCountries] = useState([]);
   const [selectedCountries2, setSelectedCountries2] = useState({});
   const [selectedCountryToDelete, setSelectedCountryToDelete] = useState(null);
   const [startQuiz, setStartQuiz] = useState(false);
@@ -105,13 +106,8 @@ const CampaignPlayPage = () => {
       // Reseteljük a kiválasztott válaszokat
       setSelectedAnswers([]);
     } else {
-      // Ha elfogytak a kérdések, kezeld ezt a helyzetet itt, például állítsd le a kvízt, jeleníts meg egy üzenetet stb.
-      // Itt megjeleníthetsz egy üzenetet vagy irányíthatod át a felhasználót egy másik oldalra
-      console.log("Elfogytak a kérdések!");
-      // Például:
-      alert("Gratulálok, befejezted a kvízt!");
-      // Vagy:
-      // history.push("/quiz-finished"); // Irányítás egy másik oldalra
+      setStartQuiz(false);
+      alert("Quiz over!");
     }
   };
 
@@ -122,6 +118,8 @@ const CampaignPlayPage = () => {
           setSelectedToDelete={setSelectedCountryToDelete}
           selectedCountry={selectedCountry}
           setSelectedCountry={setSelectedCountry}
+          selectedCountries={selectedCountries}
+          setSelectedCountries={setSelectedCountries}
           selectedCountries2={selectedCountries2}
           setSelectedCountries2={setSelectedCountries2}
         />

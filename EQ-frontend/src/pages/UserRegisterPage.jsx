@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { emailRegex, passwordRegex } from "../hooks/RegexPatterns";
 import LoginRegisterTooltip from "../components/LoginRegisterTooltip";
+import GoogleAuth from "../components/GoogleLogin";
 import UseAuth from "../hooks/UseAuth";
 import "./UserRegisterPage.css";
 
@@ -625,6 +626,10 @@ const UserRegisterPage = () => {
             <button type="submit" className="register-button">
               {import.meta.env.VITE_REACT_APP_REGISTER}
             </button>
+
+            <div className="google-implementation">
+              <GoogleAuth />
+            </div>
 
             {successMessage && (
               <p

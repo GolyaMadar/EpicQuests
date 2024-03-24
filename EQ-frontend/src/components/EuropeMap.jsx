@@ -13,25 +13,39 @@ function EuropeMap({
   setSelectedToDelete,
   selectedCountry,
   setSelectedCountry,
+  selectedCountries,
+  setSelectedCountries,
   selectedCountries2,
   setSelectedCountries2,
 }) {
   const handleRegionClick = (event, code) => {
-    // Ha az ország már ki van választva, távolítsuk el
-    if (selectedCountry === code) {
-      setSelectedCountry(null);
-      setSelectedToDelete(null);
-    } else {
-      setSelectedCountry(code);
-      setSelectedToDelete(code);
-      // Szomszédos országok hozzáadása a selectedCountries2-höz
-      for (const neighbour of neighbours[code]) {
-        if (!selectedCountry || selectedCountry !== neighbour) {
-          setSelectedCountries2((prevSelectedCountries2) => ({
-            ...prevSelectedCountries2,
-            [neighbour]: 1,
-          }));
+    if (selectedCountries.length === 0) {
+      // Ha még nincs kiválasztott ország
+      if (selectedCountry === code) {
+        // Ha az ország már ki van választva, távolítsuk el
+        setSelectedCountry(null);
+        setSelectedToDelete(null);
+      } else {
+        // Kiválasztjuk az új országot
+        setSelectedCountry(code);
+        setSelectedToDelete(code);
+        setSelectedCountries([...selectedCountries, code]);
+        for (const neighbour of neighbours[code]) {
+          if (!selectedCountries.includes(neighbour)) {
+            setSelectedCountries2((prevSelectedCountries2) => ({
+              ...prevSelectedCountries2,
+              [neighbour]: 1,
+            }));
+          }
         }
+      }
+    } else if (code in selectedCountries2) {
+      // Ha már vannak kiválasztott országok, és a kattintott ország a szomszédos országok közé tartozik
+      const updatedSelectedCountries2 = { ...selectedCountries2 };
+      if (!(code in selectedCountries)) {
+        // Ha az adott ország még nincs kiválasztva
+        updatedSelectedCountries2[code] = 1;
+        setSelectedCountries2(updatedSelectedCountries2);
       }
     }
   };
