@@ -44,6 +44,11 @@
   padding: 1rem;
 }
 
+.answers {
+  margin-top: 20px;
+  padding-bottom: 1rem;
+}
+
 .answer {
   display: flex;
   justify-content: center;
@@ -78,4 +83,20 @@
   width: fit-content;
   max-width: 450px;
   align-items: center;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 400px;
+}
+
+.Toastify {
+  z-index: 99999999;
+}
+
+.question {
+  margin-top: 20px;
 }

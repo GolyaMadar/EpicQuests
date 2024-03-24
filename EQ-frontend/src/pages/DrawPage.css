@@ -48,3 +48,16 @@ canvas {
 .save-canvas {
   padding: 1rem;
 }
+
+.drawdraw {
+  display: flex;
+  align-items: center;
+}
+
+.drawdrawdrawdraw {
+  margin-left: 40px;
+}
+
+.drawdrawdrawdraw h2 {
+  margin-bottom: 10px;
+}

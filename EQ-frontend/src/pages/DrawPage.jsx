@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
 import "./DrawPage.css";
 
 const Menu = ({ setLineColor, setLineWidth, setLineOpacity }) => {
@@ -40,6 +41,9 @@ const Canvas = () => {
   const [lineWidth, setLineWidth] = useState(15);
   const [lineColor, setLineColor] = useState("black");
   const [lineOpacity, setLineOpacity] = useState(0.1);
+  const [isGenerated, setIsGenerated] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Initialization when the component
   // mounts for the first time
@@ -77,6 +81,7 @@ const Canvas = () => {
   };
 
   const uploadImage = async (file) => {
+    setLoading(true);
     // FormData létrehozása és a fájl hozzáadása
     const formData = new FormData();
     formData.append("file", file);
@@ -85,18 +90,32 @@ const Canvas = () => {
       "http://fokakefir.go.ro:2000/upload_and_generate/",
       {
         method: "POST",
-        body: formData, // FormData objektum küldése a törzsben
+        body: formData,
       }
     );
-
     const data = await response.json();
     console.log(response);
-
     if (response.status == 200) {
       console.log("Server response:", data.filename);
+      const response2 = await fetch(
+        `http://fokakefir.go.ro:2000/generated_image/${data.filename}`,
+        {
+          method: "GET",
+          accept: "application/json",
+        }
+      );
+
+      if (response2.status == 200) {
+        setIsGenerated(true);
+        const data2 = response2.url;
+        setGeneratedImage(data2);
+        setLoading(false);
+      }
     } else {
       console.error("Error uploading image:", response.statusText);
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   // SaveImage függvény módosítása az uploadImage hívására
@@ -109,33 +128,46 @@ const Canvas = () => {
 
     // Fájl elküldése
     uploadImage(blob);
-    clearCanvas();
   };
 
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  };
   return (
-    <div className="draw-area">
-      <Menu
-        setLineColor={setLineColor}
-        setLineWidth={setLineWidth}
-        setLineOpacity={setLineOpacity}
-      />
-      <canvas
-        onMouseDown={startDrawing}
-        onMouseUp={endDrawing}
-        onMouseMove={draw}
-        ref={canvasRef}
-        width={`600px`}
-        height={`600px`}
-      />
-      <div className="save-canvas">
-        <button onClick={saveImage}>Mentés képként</button>
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="draw-area">
+          <div className="drawdraw">
+            <div className="drawdrawdraw">
+              <Menu
+                setLineColor={setLineColor}
+                setLineWidth={setLineWidth}
+                setLineOpacity={setLineOpacity}
+              />
+              <canvas
+                onMouseDown={startDrawing}
+                onMouseUp={endDrawing}
+                onMouseMove={draw}
+                ref={canvasRef}
+                width={`600px`}
+                height={`600px`}
+              />
+            </div>
+            <div className="drawdrawdrawdraw">
+              {isGenerated ? (
+                <>
+                  <h2>Generated image</h2>
+                  <img src={generatedImage} alt="Generated Image" />
+                </>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="save-canvas">
+            <button onClick={saveImage}>Mentés képként</button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
